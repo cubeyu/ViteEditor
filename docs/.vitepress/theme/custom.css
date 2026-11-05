@@ -1,37 +1,326 @@
+/* =====================================================
+   VitePress Editor 全站样式
+   - 品牌色与质感变量（明暗双主题）
+   - 导航栏毛玻璃
+   - 首页 Hero 渐变与光晕
+   - 特性卡片悬停动效
+   - 编辑器页沉浸式全屏布局
+   ===================================================== */
+
+/* ---------- 品牌色 ---------- */
 :root {
-  --vp-c-brand: #3eaf7c;
-  --vp-c-brand-light: #4abf8a;
-  --vp-c-brand-lighter: #5ccf99;
-  --vp-c-brand-dark: #369f6b;
-  --vp-c-brand-darker: #2e8f5f;
+  --vp-c-brand-1: #3eaf7c;
+  --vp-c-brand-2: #42d392;
+  --vp-c-brand-3: #369f6b;
+  --vp-c-brand-soft: rgba(62, 175, 124, 0.14);
+  --vpe-gradient: linear-gradient(120deg, #42d392, #3eaf7c 55%, #2f9e6a);
+  --vpe-shadow-brand: 0 8px 32px rgba(62, 175, 124, 0.25);
 }
 
-.editor {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+/* ---------- 全局细节 ---------- */
+html {
+  scroll-behavior: smooth;
 }
 
-.editor .md-editor {
-  border: 1px solid var(--vp-c-divider);
+::selection {
+  background: rgba(62, 175, 124, 0.25);
+}
+
+/* 细滚动条（明暗自适应） */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--vp-c-divider);
   border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--vp-c-text-3);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ---------- 导航栏毛玻璃 ---------- */
+.VPNavBar:not(.home) {
+  background-color: transparent !important;
+}
+
+.VPNavBar .wrapper > .container {
+  max-width: 100%;
+}
+
+.VPNavBar:not(.home) .content-body {
+  background-color: var(--vp-nav-bg-color) !important;
+}
+
+.VPNavBar .title {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+/* 导航底部分隔线渐变 */
+.VPNavBar .divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--vp-c-divider), transparent);
+}
+
+/* ---------- 首页 Hero ---------- */
+.VPHero .name,
+.VPHero .text {
+  background: var(--vpe-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.VPHero .name {
+  line-height: 1.15;
+}
+
+.VPHero .tagline {
+  color: var(--vp-c-text-2);
+}
+
+/* Hero 区域光晕背景 */
+.VPHome {
+  position: relative;
   overflow: hidden;
 }
 
-.editor .md-editor-dark {
-  --md-bk-color: var(--vp-c-bg);
+.VPHome::before,
+.VPHome::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.16;
+  pointer-events: none;
 }
 
-.dark .editor input {
-  color: var(--vp-c-text-1);
+.VPHome::before {
+  width: 560px;
+  height: 560px;
+  top: -180px;
+  left: -120px;
+  background: radial-gradient(circle, #42d392, transparent 70%);
 }
 
-.dark .editor button {
-  color: var(--vp-c-text-1);
-  border-color: var(--vp-c-divider);
+.VPHome::after {
+  width: 480px;
+  height: 480px;
+  top: 40px;
+  right: -160px;
+  background: radial-gradient(circle, #3eaf7c, transparent 70%);
 }
 
-.editor button:hover {
-  color: var(--vp-c-brand);
-  border-color: var(--vp-c-brand);
-} 
+.dark .VPHome::before,
+.dark .VPHome::after {
+  opacity: 0.22;
+}
+
+/* Hero 内容置于光晕之上 */
+.VPHome .container,
+.VPHome .VPFeatures {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- 按钮 ---------- */
+.VPButton.brand {
+  background: var(--vpe-gradient) !important;
+  border: none !important;
+  color: #fff !important;
+  box-shadow: var(--vpe-shadow-brand);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.VPButton.brand:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(62, 175, 124, 0.35);
+}
+
+.VPButton.alt {
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.VPButton.alt:hover {
+  transform: translateY(-2px);
+  border-color: var(--vp-c-brand-1) !important;
+  color: var(--vp-c-brand-1) !important;
+  box-shadow: var(--vpe-shadow-brand);
+}
+
+/* ---------- 特性卡片 ---------- */
+.VPFeature {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 14px !important;
+  background: var(--vp-c-bg) !important;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.VPFeature:hover {
+  transform: translateY(-4px);
+  border-color: var(--vp-c-brand-1);
+  box-shadow: var(--vpe-shadow-brand);
+}
+
+.VPFeature .icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  border-radius: 10px;
+  background: var(--vp-c-brand-soft) !important;
+  transition: transform 0.25s ease;
+}
+
+.VPFeature:hover .icon {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.VPFeature .title {
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+/* ---------- 文档页 ---------- */
+.vp-doc h1,
+.vp-doc h2 {
+  letter-spacing: -0.2px;
+}
+
+.vp-doc a {
+  text-decoration-color: rgba(62, 175, 124, 0.4);
+}
+
+.vp-doc div[class*='language-'] {
+  border-radius: 10px;
+  border: 1px solid var(--vp-c-divider);
+}
+
+/* 隐藏内置语言切换下拉（与自定义语言按钮重复，自定义按钮会同步 UI 文案与路由） */
+.VPNavBarTranslations {
+  display: none !important;
+}
+
+/* 隐藏内置的「...」扩展菜单（语言/社交入口已由自定义收纳菜单接管） */
+.VPNavBarExtra {
+  display: none !important;
+}
+
+/* 隐藏汉堡全屏菜单内的 GitHub 社交栏（图标已移到导航栏，避免重复） */
+.VPNavScreenSocialLinks {
+  display: none !important;
+}
+
+/* 统一导航断点：960px 以下隐藏官方导航链接（由自定义「...」菜单接管），
+   避免出现「链接 + 两个 ...」的重叠区间 */
+@media (max-width: 959px) {
+  .VPNavBarMenu {
+    display: none !important;
+  }
+}
+
+/* 官方默认在 ≥1280px 才显示主题切换与 GitHub 图标，统一提前到 ≥960px */
+@media (min-width: 960px) {
+  .VPNavBarAppearance {
+    display: flex !important;
+  }
+
+  .VPNavBarSocialLinks {
+    display: flex !important;
+  }
+}
+
+/* 导航栏标题前的品牌 logo */
+.vpe-nav-logo {
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .vpe-nav-logo {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+}
+
+/* 编辑器全屏页隐藏自定义页脚 */
+body.vpe-fullscreen .vpe-footer {
+  display: none;
+}
+
+/* =====================================================
+   编辑器页：沉浸式全屏布局
+   （body class 由 Layout.vue 根据路由动态控制）
+   ===================================================== */
+body.vpe-fullscreen {
+  overflow: hidden;
+}
+
+/* 隐藏导航、页脚、侧边遮罩 */
+body.vpe-fullscreen .VPNav,
+body.vpe-fullscreen .VPFooter,
+body.vpe-fullscreen .VPBackdrop {
+  display: none !important;
+}
+
+/* 内容区去掉所有内边距与宽度限制 */
+body.vpe-fullscreen .VPContent {
+  padding: 0 !important;
+  padding-top: 0 !important;
+  min-height: 0 !important;
+}
+
+body.vpe-fullscreen .VPDoc {
+  padding: 0 !important;
+}
+
+body.vpe-fullscreen .VPDoc .container {
+  max-width: none !important;
+}
+
+body.vpe-fullscreen .VPDoc .content {
+  max-width: none !important;
+  padding: 0 !important;
+}
+
+body.vpe-fullscreen .vp-doc,
+body.vpe-fullscreen .VPPage {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 汉堡全屏菜单（VPNavScreen）中的赞赏入口：仅 <960px 的全屏菜单内展示 */
+.vpe-screen-sponsor {
+  display: none;
+}
+
+@media (max-width: 959px) {
+  .vpe-screen-sponsor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 8px 24px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #f56c6c;
+    background: rgba(245, 108, 108, 0.08);
+    border: 1px solid rgba(245, 108, 108, 0.35);
+    border-radius: 10px;
+    text-decoration: none;
+  }
+}
