@@ -1,6 +1,6 @@
 <div align="center">
 
-# VitePress Editor
+# ViteEditor
 
 **在浏览器中编辑、发布和管理你的 VitePress 文章**
 
