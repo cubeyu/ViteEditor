@@ -1,8 +1,8 @@
 ---
 layout: home
 hero:
-  name: VitePress Editor
-  text: Online Markdown Editor
+  name: ViteEditor
+  text: Online Editor
   tagline: Edit, publish, and manage your VitePress posts right in the browser
   actions:
     - theme: brand

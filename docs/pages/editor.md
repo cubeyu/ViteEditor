@@ -1,7 +1,7 @@
 ---
 page: true
 title: 编辑器
-description: 在线 Markdown 编辑器
+description: 在线编辑器
 aside: false
 ---
 <script setup>

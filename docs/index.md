@@ -1,8 +1,8 @@
 ---
 layout: home
 hero:
-  name: VitePress Editor
-  text: 在线 Markdown 编辑器
+  name: ViteEditor
+  text: 在线编辑器
   tagline: 在浏览器中编辑、发布和管理你的 VitePress 文章
   actions:
     - theme: brand

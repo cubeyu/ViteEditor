@@ -26,7 +26,7 @@ const avatarBroken = ref(false)
             </linearGradient>
           </defs>
         </svg>
-        <strong>VitePress Editor</strong>
+        <strong>ViteEditor</strong>
       </a>
 
       <div class="vpe-footer-right">

@@ -4,8 +4,8 @@ import { defineConfig } from 'vitepress'
 const base = '/ViteEditor/'
 
 export default defineConfig({
-  title: 'VitePress Editor',
-  description: 'VitePress 在线 Markdown 编辑器：编写、图片直传、一键发布到 GitHub',
+  title: 'ViteEditor',
+  description: 'VitePress 在线编辑器：编写、图片直传、一键发布到 GitHub',
   base,
   lang: 'zh-CN',
   head: [

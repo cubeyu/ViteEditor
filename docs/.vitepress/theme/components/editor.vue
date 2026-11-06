@@ -862,7 +862,7 @@ const handleSave = async () => {
             </linearGradient>
           </defs>
         </svg>
-        <span class="ed-name">VitePress Editor</span>
+        <span class="ed-name">ViteEditor</span>
         <a class="ed-back" :href="withBase('/guide/')" :title="t('tutorial')">{{ t('tutorial') }}</a>
       </div>
       <div class="ed-actions">

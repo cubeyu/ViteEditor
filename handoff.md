@@ -1,6 +1,6 @@
 # handoff.md — 项目交接文档
 
-写给完全没有上下文的新会话：这是 **VitePress Editor**（原名 VitePress Online Editor，基于 VitePress 的在线 Markdown 编辑器，浏览器直连 GitHub 仓库读写）。当前处于 **v3.1.0**（v3.0.0 大版本升级 + v3.1.0 博客页/双语/成品预览增强）。
+写给完全没有上下文的新会话：这是 **ViteEditor**（原名 VitePress Online Editor，基于 VitePress 的在线 Markdown 编辑器，浏览器直连 GitHub 仓库读写）。当前处于 **v3.1.0**（v3.0.0 大版本升级 + v3.1.0 博客页/双语/成品预览增强）。
 
 ## 在做什么
 
@@ -25,7 +25,7 @@
 - v3.0.0 功能升级（2026-11-06）：
   - editor.vue 全面重写：全屏布局、双栏头部（品牌/工具 + GitHub 连接栏）、文件树面板（Trees API、目录折叠、路径搜索、点击加载、front matter 标题回填、sha 删除）、图片目录网格（点击 insert 插入）、草稿自动保存、导入（.md/.markdown/.txt 带覆盖确认）导出（.md/.html）、MdCatalog 目录、确认弹窗组件；
   - 全站样式精修：custom.css 双主题（渐变 Hero/光晕背景/毛玻璃导航/卡片悬停动效/品牌渐变按钮/细滚动条）+ 全屏规则；
-  - 项目改名 VitePress Editor：package.json（@cubeyu/vitepress-editor 3.0.0）、config.js、全部 docs、README；
+  - 项目改名 ViteEditor：package.json（@cubeyu/vitepress-editor 3.0.0）、config.js、全部 docs、README；
   - 新增教程 docs/guide/integrate.md（接入已有 VitePress 项目，含耦合点说明与 FAQ）；guide/editor.md 补齐全部新功能文档并核对行号；README 重写（新截图配图，截图在 .github/assets/）；
   - 新增 docs/public/favicon.svg（原 favicon.ico 链接 404）。
 
@@ -93,7 +93,7 @@
 ### v3.0.0 — 2026-11-06 — 大版本功能升级 + 改名（新增/重构）
 
 - 涉及文件：`docs/.vitepress/theme/components/editor.vue`（全面重写 ~1000 行）、`docs/.vitepress/theme/custom.css`、`docs/.vitepress/theme/Layout.vue`、`docs/.vitepress/config.js`、`package.json`、`docs/guide/editor.md`、`docs/guide/integrate.md`（新建）、`docs/guide/index.md`、`docs/index.md`、`README.md`（重写）、`.github/assets/*`（5 张新截图）、`docs/public/favicon.svg`（新增）、删除 `zs.png`。
-- 摘要：编辑器升级为全屏沉浸工作台（文件树/图片目录/目录导航三面板 + 双栏头部）；新增仓库文件管理（加载/删除）、草稿自动保存、导入导出；全站明暗双主题精修；项目改名 VitePress Editor；新增"接入已有 VitePress 项目"教程；README 重构配图。浏览器实测通过（全屏、主题联动、目录实时更新、草稿保存/恢复、导出菜单、面板开关），docs:build 通过。
+- 摘要：编辑器升级为全屏沉浸工作台（文件树/图片目录/目录导航三面板 + 双栏头部）；新增仓库文件管理（加载/删除）、草稿自动保存、导入导出；全站明暗双主题精修；项目改名 ViteEditor；新增"接入已有 VitePress 项目"教程；README 重构配图。浏览器实测通过（全屏、主题联动、目录实时更新、草稿保存/恢复、导出菜单、面板开关），docs:build 通过。
 
 ### v2.1.0 — 2026-11-06 — 安全审计修复 + 文档重写（修复/新增）
 

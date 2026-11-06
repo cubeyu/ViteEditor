@@ -1,11 +1,11 @@
 ---
 title: 接入已有项目
-description: 把 VitePress Editor 嵌入你已有的 VitePress 站点，六步完成集成
+description: 把 ViteEditor 嵌入你已有的 VitePress 站点，六步完成集成
 ---
 
 # 接入已有 VitePress 项目
 
-本教程面向**已有 VitePress 站点**、想把 VitePress Editor 嵌进去的用户。编辑器本体是一个自包含的 Vue 组件 `editor.vue`，核心运行时依赖只有两个：`md-editor-v3` 与 `vue3-toastify`。它与 VitePress 的耦合点（主题联动、`withBase()`、CSS 变量）都是 VitePress 默认主题天然具备的，因此接入成本很低。
+本教程面向**已有 VitePress 站点**、想把 ViteEditor 嵌进去的用户。编辑器本体是一个自包含的 Vue 组件 `editor.vue`，核心运行时依赖只有两个：`md-editor-v3` 与 `vue3-toastify`。它与 VitePress 的耦合点（主题联动、`withBase()`、CSS 变量）都是 VitePress 默认主题天然具备的，因此接入成本很低。
 
 想先了解全部功能再动手，见[编辑器使用教程](/guide/editor)；也可以先在[在线编辑器](/pages/editor)体验。
 
@@ -83,7 +83,7 @@ md-editor-v3 的内部组件由 editor.vue 自行导入，不需要你注册。
 ---
 page: true
 title: 编辑器
-description: 在线 Markdown 编辑器
+description: 在线编辑器
 aside: false
 ---
 <script setup>

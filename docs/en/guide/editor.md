@@ -1,11 +1,11 @@
 ---
 title: Editor Tutorial
-description: From creating a GitHub token to publishing and managing posts — the complete VitePress Editor guide
+description: From creating a GitHub token to publishing and managing posts — the complete ViteEditor guide
 ---
 
 # Editor Tutorial
 
-This tutorial is for first-time VitePress Editor users: starting from creating a GitHub token, it walks through the full workflow of "connect a repository → write a post → browse and load existing posts → save and publish → upload images → import and export". Everything happens in the browser; no local development environment is required.
+This tutorial is for first-time ViteEditor users: starting from creating a GitHub token, it walks through the full workflow of "connect a repository → write a post → browse and load existing posts → save and publish → upload images → import and export". Everything happens in the browser; no local development environment is required.
 
 ## Overview
 
@@ -25,7 +25,7 @@ The editor page uses an **immersive fullscreen layout**: VitePress navigation an
 
 ```text
 ┌──────────────────────────────────────────────────────────────┐
-│ Top bar  Brand (logo + VitePress Editor + Guide)  │ File TOC Import Export Preview New │
+│ Top bar  Brand (logo + ViteEditor + Guide)  │ File TOC Import Export Preview New │
 ├──────────────────────────────────────────────────────────────┤
 │ Conn bar Status badge │ Token │ Username │ Repo │ Branch │ File path │ Connect │ Save │
 ├───────────┬─────────────────────────────────────┬────────────┤
@@ -37,7 +37,7 @@ The editor page uses an **immersive fullscreen layout**: VitePress navigation an
 
 | Area | Controls | Description |
 | --- | --- | --- |
-| Top bar · Brand | Gradient logo + "VitePress Editor" + "Guide" link | "Guide" links back to the docs site (`withBase('/guide/')`) |
+| Top bar · Brand | Gradient logo + "ViteEditor" + "Guide" link | "Guide" links back to the docs site (`withBase('/guide/')`) |
 | Top bar · Tools | File | Toggle for the left file tree panel (open by default) |
 | Top bar · Tools | TOC | Toggle for the right TOC panel (collapsed by default) |
 | Top bar · Tools | Import | Import local `.md` / `.markdown` / `.txt` files |
@@ -360,7 +360,7 @@ The editor page (`/pages/editor`) uses an immersive fullscreen layout, completel
 - `Layout.vue` watches the route and dynamically adds the `vpe-fullscreen` class to `body` when the page is `pages/editor.md`;
 - In `custom.css`, `body.vpe-fullscreen` rules hide the VitePress navigation (`.VPNav`), footer (`.VPFooter`), and backdrop, and remove all padding and max-width constraints from the content area;
 - The component's root container is `100dvh` tall, so the editor fills the entire viewport;
-- The brand area on the left of the top bar (gradient logo + "VitePress Editor") provides a "Guide" link to return to the docs site at any time.
+- The brand area on the left of the top bar (gradient logo + "ViteEditor") provides a "Guide" link to return to the docs site at any time.
 
 To replicate this layout in your own VitePress site, see [Integrating into an existing project](/en/guide/integrate).
 
@@ -599,7 +599,7 @@ No. The PUT request of the GitHub Contents API automatically creates every missi
 - Language sync changed to "UI copy strictly follows the page's language tree" (except the shared bilingual editor page), fixing Chinese copy appearing on en pages;
 - The footer was simplified to a single-line style (brand · links · author + donate).
 
-### v3.0.0 (major upgrade, renamed to VitePress Editor)
+### v3.0.0 (major upgrade, renamed to ViteEditor)
 
 - Immersive fullscreen layout: the editor page fills the entire viewport, hiding VitePress navigation and footer;
 - GitHub token entered directly in the UI (connection bar), with a connection status badge (not connected / connected / connection failed);

@@ -148,7 +148,7 @@ const I18N = {
     // 页脚
     // 博客
     blogTitle: '全部文章',
-    blogDescription: '由 VitePress Editor 在线编辑发布的文章，按时间归档',
+    blogDescription: '由 ViteEditor 在线编辑发布的文章，按时间归档',
     readMore: '阅读全文',
     noPostsYet: '还没有文章，去编辑器发布第一篇吧！',
     goEditor: '去发布'
@@ -243,7 +243,7 @@ const I18N = {
     // Footer
     // Blog
     blogTitle: 'All posts',
-    blogDescription: 'Posts written and published online with VitePress Editor, archived by date',
+    blogDescription: 'Posts written and published online with ViteEditor, archived by date',
     readMore: 'Read more',
     noPostsYet: 'No posts yet — publish your first one from the editor!',
     goEditor: 'Publish now'

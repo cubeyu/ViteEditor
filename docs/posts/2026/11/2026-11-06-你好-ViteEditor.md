@@ -1,6 +1,6 @@
 ---
 post: true
-title: 你好，VitePress Editor
+title: 你好，ViteEditor
 date: 2026-11-06
 cover: /images/sample-editor-light.png
 coveross: 备用连接
@@ -9,7 +9,7 @@ categories:
 tags:
  - VitePress
  - Editor
-description: 这是通过 VitePress Editor 在线编辑并一键发布到 GitHub 的第一篇文章，全文展示编辑器的工作流程。
+description: 这是通过 ViteEditor 在线编辑并一键发布到 GitHub 的第一篇文章，全文展示编辑器的工作流程。
 ---
 
 这篇文章本身就是最好的示例：它是在浏览器里打开「在线编辑器」，写完点击「保存到 GitHub」，由 GitHub Actions 自动构建部署上线的。全程没有碰本地终端。

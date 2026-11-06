@@ -1,12 +1,12 @@
 <div align="center">
 
-# VitePress Editor
+# ViteEditor
 
 **在浏览器中编辑、发布和管理你的 VitePress 文章**
 
 [在线体验](https://cubeyu.github.io/ViteEditor/pages/editor) · [使用教程](https://cubeyu.github.io/ViteEditor/guide/editor) · [接入已有项目](https://cubeyu.github.io/ViteEditor/guide/integrate) · [报告问题](https://github.com/cubeyu/ViteEditor/issues)
 
-![VitePress Editor 全屏编辑器](.github/assets/editor-light.png)
+![ViteEditor 全屏编辑器](.github/assets/editor-light.png)
 
 </div>
 

@@ -1,11 +1,11 @@
 ---
-title: VitePress Editor 介绍
-description: VitePress Editor 是一个基于 VitePress 的全屏在线 Markdown 编辑器，支持编写、发布与管理 GitHub 仓库文章
+title: ViteEditor 介绍
+description: ViteEditor 是一个基于 VitePress 的全屏在线编辑器，支持编写、发布与管理 GitHub 仓库文章
 ---
 
-# VitePress Editor 介绍
+# ViteEditor 介绍
 
-VitePress Editor（原名 VitePress Online Editor）是一个基于 VitePress 的在线 Markdown 编辑器，专为 VitePress 博客和文档站点设计。打开页面即是全屏沉浸编辑器：编写、预览、管理仓库文章、上传图片、一键发布到 GitHub，全程在浏览器中完成，无需本地环境。
+ViteEditor（原名 VitePress Online Editor）是一个基于 VitePress 的在线编辑器，专为 VitePress 博客和文档站点设计。打开页面即是全屏沉浸编辑器：编写、预览、管理仓库文章、上传图片、一键发布到 GitHub，全程在浏览器中完成，无需本地环境。
 
 ## 核心特性
 

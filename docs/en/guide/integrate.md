@@ -1,11 +1,11 @@
 ---
 title: Integrating into an Existing Project
-description: Embed VitePress Editor into your existing VitePress site — integration complete in six steps
+description: Embed ViteEditor into your existing VitePress site — integration complete in six steps
 ---
 
 # Integrating into an Existing VitePress Project
 
-This tutorial is for users who **already have a VitePress site** and want to embed VitePress Editor into it. The editor itself is a self-contained Vue component, `editor.vue`, whose core runtime dependencies are just two packages: `md-editor-v3` and `vue3-toastify`. Its coupling points with VitePress (theme syncing, `withBase()`, CSS variables) are all natively provided by VitePress's default theme, so the integration cost is low.
+This tutorial is for users who **already have a VitePress site** and want to embed ViteEditor into it. The editor itself is a self-contained Vue component, `editor.vue`, whose core runtime dependencies are just two packages: `md-editor-v3` and `vue3-toastify`. Its coupling points with VitePress (theme syncing, `withBase()`, CSS variables) are all natively provided by VitePress's default theme, so the integration cost is low.
 
 To learn all the features before getting started, see the [editor tutorial](/en/guide/editor); you can also try it first in the [online editor](/pages/editor).
 
@@ -83,7 +83,7 @@ Create a new `docs/pages/editor.md` (or any path you prefer):
 ---
 page: true
 title: Editor
-description: Online Markdown Editor
+description: Online Editor
 aside: false
 ---
 <script setup>

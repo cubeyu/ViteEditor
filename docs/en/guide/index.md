@@ -1,11 +1,11 @@
 ---
-title: Introduction to VitePress Editor
-description: VitePress Editor is a fullscreen online Markdown editor built on VitePress, supporting writing, publishing, and managing posts in your GitHub repository
+title: Introduction to ViteEditor
+description: ViteEditor is a fullscreen online editor built on VitePress, supporting writing, publishing, and managing posts in your GitHub repository
 ---
 
-# Introduction to VitePress Editor
+# Introduction to ViteEditor
 
-VitePress Editor (formerly VitePress Online Editor) is an online Markdown editor built on VitePress, designed for VitePress blogs and documentation sites. Opening the page drops you straight into a fullscreen immersive editor: writing, previewing, managing repository posts, uploading images, and publishing to GitHub with one click — all in the browser, no local environment required.
+ViteEditor (formerly VitePress Online Editor) is an online editor built on VitePress, designed for VitePress blogs and documentation sites. Opening the page drops you straight into a fullscreen immersive editor: writing, previewing, managing repository posts, uploading images, and publishing to GitHub with one click — all in the browser, no local environment required.
 
 ## Key Features
 
