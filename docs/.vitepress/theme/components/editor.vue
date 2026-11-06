@@ -101,7 +101,8 @@ const repoContentsUrl = (path = '') => {
 // 统一的 GitHub API 请求封装：15s 超时，避免网络挂起时 loading 态永久锁死
 const ghFetch = async (url, options = {}) => {
   try {
-    return await ghFetch(url, { ...options, signal: AbortSignal.timeout(15000) })
+    // 注意：这里必须调用原生 fetch，不能递归调用 ghFetch 自身
+    return await fetch(url, { ...options, signal: AbortSignal.timeout(15000) })
   } catch (error) {
     if (error.name === 'TimeoutError' || error.name === 'AbortError') {
       throw new Error(t('requestTimeout'))
@@ -360,7 +361,8 @@ const loadRepoTree = async () => {
     }
     const data = await res.json()
     const posts = (data.tree || [])
-      .filter(t => t.type === 'blob' && /^docs\/posts\/.+\.md$/.test(t.path))
+      // 排除博客列表页自身（docs/posts/index.md 是 /posts/ 列表页，不是文章）
+      .filter(t => t.type === 'blob' && /^docs\/posts\/.+\.md$/.test(t.path) && t.path !== 'docs/posts/index.md')
       .map(t => ({ path: t.path, name: t.path.split('/').pop(), sha: t.sha }))
     const images = (data.tree || [])
       .filter(t => t.type === 'blob' && /^docs\/public\/images\/.+\.(png|jpe?g|gif|webp|svg|ico|avif)$/i.test(t.path))
@@ -799,6 +801,7 @@ const handleSave = async () => {
 
   saveLoading.value = true
   const fileName = filePath.value ? filePath.value.trim() : generateFileName()
+  const fileContent = content.value
 
   try {
     // 检查文件是否已存在（GitHub Contents API 的 PUT 会自动创建多级目录）
@@ -884,12 +887,11 @@ const handleSave = async () => {
             <svg viewBox="0 0 24 24" width="15" height="15"><path fill="currentColor" d="M12 16a1 1 0 0 1-.7-.3l-4-4a1 1 0 1 1 1.4-1.4L11 12.6V4a1 1 0 1 1 2 0v8.6l2.3-2.3a1 1 0 1 1 1.4 1.4l-4 4A1 1 0 0 1 12 16ZM4 17a1 1 0 0 1 1 1v1h14v-1a1 1 0 1 1 2 0v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1a1 1 0 0 1 1-1Z"/></svg>
             <span>{{ t('export') }}</span>
           </button>
-          <transition name="ed-fade">
-            <div v-if="showExportMenu" class="ed-export-menu">
-              <button @click="exportMarkdown(); closeExportMenu()">{{ t('exportMd') }}</button>
-              <button @click="exportHtmlFile(); closeExportMenu()">{{ t('exportHtml') }}</button>
-            </div>
-          </transition>
+          <!-- 注：不用 <transition>（后台标签页 rAF 被节流时 v-if 移除会卡住），入场用 CSS animation -->
+          <div v-if="showExportMenu" class="ed-export-menu">
+            <button @click="exportMarkdown(); closeExportMenu()">{{ t('exportMd') }}</button>
+            <button @click="exportHtmlFile(); closeExportMenu()">{{ t('exportHtml') }}</button>
+          </div>
         </div>
         <button class="ed-tool-btn" :class="{ active: previewMode }" @click="togglePreviewMode" :title="t('preview')">
           <svg viewBox="0 0 24 24" width="15" height="15"><path fill="currentColor" d="M12 5c5 0 9.3 3 11 7-1.7 4-6 7-11 7s-9.3-3-11-7c1.7-4 6-7 11-7Zm0 2c-3.8 0-7.2 2.1-8.8 5 1.6 2.9 5 5 8.8 5s7.2-2.1 8.8-5c-1.6-2.9-5-5-8.8-5Zm0 1.5a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7Zm0 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/></svg>
@@ -1058,19 +1060,17 @@ const handleSave = async () => {
     <!-- 隐藏的导入输入框 -->
     <input type="file" accept=".md,.markdown,.txt" ref="importInputRef" style="display: none" @change="handleImportFile">
 
-    <!-- 通用确认弹窗 -->
-    <transition name="ed-fade">
-      <div v-if="confirmState.show" class="ed-modal-mask" @click.self="closeConfirm">
-        <div class="ed-modal" role="dialog" aria-modal="true" :class="{ danger: confirmState.danger }">
-          <h3>{{ confirmState.title }}</h3>
-          <p>{{ confirmState.text }}</p>
-          <div class="ed-modal-actions">
-            <button class="ed-btn" @click="closeConfirm">{{ t('cancel') }}</button>
-            <button class="ed-btn primary" :class="{ danger: confirmState.danger }" @click="handleConfirmOk">{{ t('ok') }}</button>
-          </div>
+    <!-- 通用确认弹窗（注：不用 <transition>，避免后台标签页 rAF 节流导致 v-if 移除卡住；入场用 CSS animation） -->
+    <div v-if="confirmState.show" class="ed-modal-mask" @click.self="closeConfirm">
+      <div class="ed-modal" role="dialog" aria-modal="true" :class="{ danger: confirmState.danger }">
+        <h3>{{ confirmState.title }}</h3>
+        <p>{{ confirmState.text }}</p>
+        <div class="ed-modal-actions">
+          <button class="ed-btn" @click="closeConfirm">{{ t('cancel') }}</button>
+          <button class="ed-btn primary" :class="{ danger: confirmState.danger }" @click="handleConfirmOk">{{ t('ok') }}</button>
         </div>
       </div>
-    </transition>
+    </div>
   </div>
 </template>
 
@@ -1843,14 +1843,25 @@ const handleSave = async () => {
 }
 
 /* ===== 过渡动画 ===== */
-.ed-fade-enter-active,
-.ed-fade-leave-active {
-  transition: opacity 0.18s ease;
+/* 确认弹窗/导出菜单：入场用 CSS animation（不依赖 Vue transition 的 rAF），关闭即时移除 */
+.ed-modal-mask {
+  animation: vpe-fade-in 0.18s ease;
 }
 
-.ed-fade-enter-from,
-.ed-fade-leave-to {
-  opacity: 0;
+.ed-export-menu {
+  animation: vpe-fade-in 0.15s ease;
+}
+
+@keyframes vpe-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .ed-slide-enter-active,

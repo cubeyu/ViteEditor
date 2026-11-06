@@ -57,6 +57,17 @@
 
 ## 变更记录（时间倒序）
 
+### v3.1.3 — 2026-11-06 — 真实 Token 端到端测试修复（修复）
+
+- 涉及文件：`editor.vue`。
+- 摘要（用真实 GitHub Token 走通「连接 → 文件树 → 保存 → 删除」后发现并修复 3 个回归 bug）：
+  1. **ghFetch 无限递归**：批量替换 `fetch` → `ghFetch` 时把封装内部的 `fetch` 也替换了，导致连接时报 `RangeError: Maximum call stack size exceeded`。已改回原生 `fetch` 并加注释；
+  2. **保存报 `fileContent is not defined`**：删除 `ensureDirectoryExists` 时误删了 `fileContent` 变量声明，已补回；
+  3. **确认弹窗/导出菜单在后台标签页关不掉**：Vue `<transition>` 的离开动画依赖 rAF（后台标签页被节流时永不完成，DOM 残留）。改用 CSS `animation` 入场 + 即时移除，不再依赖 rAF。
+  - 附带：文件树排除 `docs/posts/index.md`（博客列表页不是文章）。
+  - 实测结果：Token 验证 ✓、自动重连 ✓、文件树加载（2 篇文章 + 1 张图片）✓、保存新文章（自动归档到 docs/posts/2026/11/、路径回填）✓、删除文件（仓库 API 复核确认删除）✓、确认弹窗取消/Esc ✓。
+- ⚠️ 测试期间用户提供的 Token 已出现在对话记录中，**必须撤销重建**。
+
 ### v3.1.2+sync — 2026-11-06 — 仓库改名同步（修复）
 
 - GitHub 仓库已改名 **ViteEditor**（cubeyu/ViteEditor），全仓 24 处引用同步：config.js `base: '/ViteEditor/'`（站点新地址 https://cubeyu.github.io/ViteEditor/）、GitHub 链接（blob/issues）、Pages 站点链接、README clone 命令（`cd ViteEditor`）、git remote 已 set-url。构建产物验证：favicon/guide 链接均为新 base，零旧名残留。
